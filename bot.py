@@ -33,21 +33,21 @@ def send_message(user_id,txt,token):
     url='https://api.telegram.org/bot{}/sendMessage?chat_id={}&text={}'.format(token,user_id,txt)
     response=json.loads(requests.get(url).text)
     if not response['ok']:
-        print"Something goes wrong..."
+        print("Something goes wrong...")
 
 def send_audio(user_id,location,token):
-    print location
+    print(location)
     url='https://api.telegram.org/bot{}/sendaudio'.format(token)
     files={'audio':open('./{}'.format(location),'rb').read()}
     data={'chat_id':user_id,'title':location}
     json_re = requests.post(url,files=files,data=data).text
     response=json.loads(json_re)
     if not response['ok']:
-        print"Something goes wrong..."
-        print response
+        print("Something goes wrong...")
+        print(response)
 
 def bot():
-    print"bot started..."
+    print("bot started...")
     token = os.environ.get('TOKEN', None)
     offset=None
     while True:
@@ -57,7 +57,7 @@ def bot():
                 continue
         else:
             continue
-        print"Message recived..."
+        print("Message recived...")
         offset=updates['result'][0]['update_id']+1
         url=updates['result'][0]['message']['text']
         user_id=updates['result'][0]['message']['from']['id']
@@ -73,7 +73,7 @@ def bot():
             send_audio(user_id,mp3,token)
             send_message(user_id,"Bot created by @Oliva_0.",token)
         except Exception as e:
-            print e
+            print(e)
             send_message(user_id,"Something goes wrong...\nretry...",token)
 
 if __name__ == '__main__':
