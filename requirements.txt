@@ -1,0 +1,2 @@
+youtube_dl==2019.4.17
+requests==2.11.1
