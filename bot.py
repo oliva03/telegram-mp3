@@ -48,7 +48,7 @@ def send_audio(user_id,location,token):
 
 def bot():
     print"bot started..."
-    token = '742559632:AAHQPRMS6Tgu-syXC4btko2ayLJzpKTn1OA'
+    token = os.environ.get('TOKEN', None)
     offset=None
     while True:
         updates=update(token,offset)
