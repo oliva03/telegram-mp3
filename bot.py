@@ -61,7 +61,7 @@ def bot():
         offset=updates['result'][0]['update_id']+1
         url=updates['result'][0]['message']['text']
         user_id=updates['result'][0]['message']['from']['id']
-        if user_id != 436507942 and user_id != 56165526 and user_id != 322182250 and user_id != 639592445:
+        if user_id != 639592445:
             send_message(user_id,"You aren't allowed to use this bot..",token)
             continue
         if url[:8]!='https://':
